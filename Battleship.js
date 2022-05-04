@@ -354,12 +354,14 @@ function gameLoop(){
             console.log(prompt);
             response=input();
             if(response.length>0){
+                var tmp="Input error: designated coordinate is not within the grid boundaries.";
                 try{
                     xAndY=decodeInput(response);
                     if(xAndY[0]>0&&xAndY[0]<11&&xAndY[1]>0&&xAndY[1]<11)invalid=false;
-                }catch{
-                    prompt="Input error: designated coordinate is not within the grid boundaries.";
+                }catch(error){
+                    tmp="Input error: designated coordinate is not within the grid boundaries.";
                 }
+                prompt=tmp;
             }
             else prompt="Input error: cannot enter empty line.";
         }
@@ -411,17 +413,19 @@ function gameLoop(){
         console.log("Turn: "+game.turn.toString()+"\n\n"+game.player1View());
 
         prompt+="\nSelect a coordinate to shoot at.\n(Example: A2,E5 or J10)";
-        console.log(prompt);
         var invalid=true;
         while(invalid){
+            console.log(prompt);
             response=input();
             if(response.length>0){
+                var tmp="Input error: designated coordinate is not within the grid boundaries.";
                 try{
                     xAndY=decodeInput(response);
                     if(xAndY[0]>0&&xAndY[0]<11&&xAndY[1]>0&&xAndY[1]<11)invalid=false;
-                }catch{
-                    prompt="Input error: designated coordinate is not within the grid boundaries.";
+                }catch(error){
+                    //prompt="Input error: designated coordinate is not within the grid boundaries.";
                 }
+                prompt=tmp;
             }
         }
 
